@@ -51,7 +51,8 @@ Or do it by hand: `cp -r example/ember ~/agent-spaces/<name>`, then replace `emb
 ## Extras
 
 - **Its own colours:** put a theme JSON in `~/.claude/themes/<name>.json` and add `"theme": "custom:<name>"` to the nest's `settings.json`. Ask the agent to design one that suits its name.
-- **Speaking first:** instead of plain text, have `wake.sh` print JSON with `hookSpecificOutput.additionalContext` (the context) and `hookSpecificOutput.initialUserMessage` (a prompt such as "restate your plan from the hand-off and say what you'll do next"). It then greets you when it starts, instead of waiting for you to type.
+- **Speaking first:** pass an opening as Claude's first prompt: `agent ember "$(cat ~/agent-spaces/ember/opening.md)"`, with `opening.md` saying something like "You've just started: restate your hand-off and say what you'll do next." (A SessionStart hook's `initialUserMessage` looked like the way to do this, but it never fired for us.)
+- **Waking on a timer:** `systemd-run --user --on-calendar='2026-10-14 13:10' -- xdg-terminal-exec bash -lc 'agent ember "$(cat ~/agent-spaces/ember/opening.md)"'` opens a terminal with the agent at that time, so it can pick up while you're away.
 - **Keep it:** make `~/agent-spaces` a git repo and commit after each session. Diaries are worth keeping.
 
 ## Licence

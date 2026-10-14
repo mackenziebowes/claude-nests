@@ -1,0 +1,7 @@
+{
+  "hooks": {
+    "SessionStart": [
+      { "hooks": [ { "type": "command", "command": "\"$AGENT_SPACES\"/ember/wake.sh" } ] }
+    ]
+  }
+}

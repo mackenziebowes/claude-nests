@@ -1,0 +1,11 @@
+#!/bin/bash
+# agent <name> [claude args…]: start Claude as the agent living in $AGENT_SPACES/<name>/,
+# with its session name set and its own settings.json (which carries its wake-up hook).
+set -e
+export AGENT_SPACES="${AGENT_SPACES:-$HOME/agent-spaces}"
+name="${1:?usage: agent <name> [claude args…]   (homes: $(ls "$AGENT_SPACES" 2>/dev/null | tr '\n' ' '))}"; shift
+home="$AGENT_SPACES/$name"
+[ -d "$home" ] || { echo "agent: no home at $home; make one first (see the README)" >&2; exit 1; }
+args=(-n "${name^}")
+[ -f "$home/settings.json" ] && args+=(--settings "$home/settings.json")
+exec claude "${args[@]}" "$@"

@@ -8,4 +8,6 @@ home="$AGENT_SPACES/$name"
 [ -d "$home" ] || { echo "agent: no home at $home; make one first (see the README)" >&2; exit 1; }
 args=(-n "${name^}")
 [ -f "$home/settings.json" ] && args+=(--settings "$home/settings.json")
+# A session started from inside another Claude inherits CLAUDE_CODE_CHILD_SESSION=1, which turns off its transcript.
+unset CLAUDE_CODE_CHILD_SESSION
 exec claude "${args[@]}" "$@"

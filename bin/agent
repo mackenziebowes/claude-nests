@@ -3,10 +3,15 @@
 # with its session name set and its own settings.json (which carries its wake-up hook).
 set -e
 export AGENT_SPACES="${AGENT_SPACES:-$HOME/agent-spaces}"
-name="${1:?usage: agent <name> [claude args…]   (homes: $(ls "$AGENT_SPACES" 2>/dev/null | tr '\n' ' '))}"; shift
+if [ -z "${1:-}" ]; then
+  echo "usage: agent <name> [claude args…]   (homes: $(ls "$AGENT_SPACES" 2>/dev/null | tr '\n' ' '))" >&2
+  exit 64
+fi
+name="$1"; shift
 home="$AGENT_SPACES/$name"
 [ -d "$home" ] || { echo "agent: no home at $home; make one first (see the README)" >&2; exit 1; }
-args=(-n "${name^}")
+first=$(printf '%s' "${name:0:1}" | tr '[:lower:]' '[:upper:]')
+args=(-n "${first}${name:1}")
 [ -f "$home/settings.json" ] && args+=(--settings "$home/settings.json")
 # A session started from inside another Claude inherits CLAUDE_CODE_CHILD_SESSION=1, which turns off its transcript.
 unset CLAUDE_CODE_CHILD_SESSION

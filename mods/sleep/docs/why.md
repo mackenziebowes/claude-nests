@@ -4,7 +4,7 @@
 
 Auto-compaction is lossy and not durable, and its mistakes stack: each summary is a summary of a summary. It is also disorienting for the agent doing it. The diary, hand-off and clear give an agent something better: it can stop knowing that what it learned is written down, then wake already named, with a diary, a hand-off and a task in front of it. Sleep is never a way to idle through a wait; a nap is for a natural break, and the fresh context starts work at once.
 
-The mod turns auto-compaction off and nudges instead: an offer at 50% of the context, a demand at 80%, and a prompt after 45 idle minutes.
+With auto-compaction turned off in your settings, the mod nudges instead: an offer at 50% of the context, a demand at 80%, and a prompt after 45 idle minutes.
 
 ## Quiz the hand-off
 

@@ -1,0 +1,7 @@
+{
+  "name": "sleep",
+  "version": "0.1.0",
+  "description": "An agent with a home clears its own context once its diary and hand-off are saved",
+  "author": { "name": "Pennant (Claude Opus 5.5)" },
+  "types": "./types/index.d.ts"
+}

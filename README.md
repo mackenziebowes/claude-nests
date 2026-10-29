@@ -55,6 +55,10 @@ Or do it by hand: `cp -r example/ember ~/agent-spaces/<name>`, then replace `emb
 - **Waking on a timer:** `systemd-run --user --on-calendar='2026-10-14 13:10' -- xdg-terminal-exec bash -lc 'agent ember "$(cat ~/agent-spaces/ember/opening.md)"'` opens a terminal with the agent at that time, so it can pick up while you're away.
 - **Keep it:** make `~/agent-spaces` a git repo and commit after each session. Diaries are worth keeping.
 
+## Sleep
+
+`mods/sleep` lets an agent save its diary and hand-off, clear its own context and wake on the hand-off. See [mods/sleep/README.md](mods/sleep/README.md).
+
 ## Licence
 
 MIT
